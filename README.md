@@ -1,30 +1,22 @@
 # digitec.com.co
 
-Sitio oficial de DIGITEC GLOBAL SAS. Producción en Hostinger, publicado automáticamente desde GitHub.
+Sitio oficial de DIGITEC GLOBAL SAS. Producción en Hostinger, publicada desde este repositorio con la integración Git nativa de Hostinger.
 
 ## Cómo se publica
 
-Cada push a `main` dispara el workflow **Desplegar a Hostinger** (GitHub Actions), que sube el contenido de `site/` al `public_html` del dominio por FTPS. Nadie sube archivos a mano.
-
 ```
-editar site/ → commit → push a main → GitHub Actions → Hostinger → digitec.com.co
+editar → commit → push a main → Hostinger (integración Git) → digitec.com.co
 ```
 
-También se puede lanzar manualmente desde la pestaña Actions (workflow_dispatch).
+En hPanel el sitio está conectado a este repositorio como despliegue estático. Para publicar cambios basta hacer push a `main` y redesplegar (o automático si el webhook de auto-deploy está activo en hPanel → Git).
 
-## Secrets requeridos (Settings → Secrets and variables → Actions)
+## Contenido
 
-| Secret | Valor |
-|---|---|
-| `FTP_SERVER` | Host FTP del sitio en Hostinger |
-| `FTP_USERNAME` | Usuario FTP (cuenta con raíz en el public_html de digitec.com.co) |
-| `FTP_PASSWORD` | Contraseña de esa cuenta FTP |
-
-## Estructura
-
-- `site/` — contenido publicado tal cual (index.html autocontenido, og.jpg, .htaccess, robots.txt, sitemap.xml)
-- `.github/workflows/deploy.yml` — pipeline de despliegue
+- `index.html` — sitio completo, autocontenido (fuentes, imágenes y lógica embebidas)
+- `og.jpg` — imagen para compartir en redes (Open Graph)
+- `.htaccess` — HTTPS forzado y compresión
+- `robots.txt` / `sitemap.xml` — SEO
 
 ## Futuro
 
-Cuando el sitio migre a Next.js (repo Digitec), este mismo workflow gana un paso de build y el destino no cambia.
+Cuando el sitio migre a Next.js, este repositorio pasará a desplegarse con paso de build; el dominio y el flujo no cambian.
