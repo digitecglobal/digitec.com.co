@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://digitec.com.co/sitemap.xml
